@@ -1,0 +1,6 @@
+data/*.Rdata
+*.tgz
+cache/*
+data/*
+figure/*
+.*
