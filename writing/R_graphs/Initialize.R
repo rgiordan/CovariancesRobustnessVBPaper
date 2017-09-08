@@ -9,7 +9,7 @@ library(png)
 library(latex2exp)
 library(Matrix)
 
-paper_directory <- file.path(Sys.getenv("GIT_REPO_LOC"), "VariationalRobustBayesPaper")
+paper_directory <- file.path(Sys.getenv("GIT_REPO_LOC"), "CovariancesRobustnessVBPaper")
 
 opts_chunk$set(fig.pos='!h', fig.align='center', dev='png', dpi=300)
 knitr_debug <- FALSE

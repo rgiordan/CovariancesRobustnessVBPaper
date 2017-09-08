@@ -1,4 +1,4 @@
-paper_directory <- file.path(Sys.getenv("GIT_REPO_LOC"), "VariationalRobustBayesPaper")
+paper_directory <- file.path(Sys.getenv("GIT_REPO_LOC"), "CovariancesRobustnessVBPaper")
 script_directory <- file.path(paper_directory, "writing/R_graphs")
 
 source(file.path(script_directory, "Initialize.R"))
