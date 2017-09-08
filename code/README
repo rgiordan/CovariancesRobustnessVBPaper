@@ -1,0 +1,10 @@
+The code to generate the results in the paper can currently be found in
+the following repositories:
+
+https://github.com/rgiordan/LinearResponseVariationalBayes.py/tree/master/Models/LogisticGLMM
+https://github.com/rgiordan/criteo
+https://github.com/rgiordan/StanSensitivity
+https://github.com/rgiordan/LRVBUtils
+
+In the coming week or so, I'll clean these up, isolate what is necessary for the paper,
+and make a static copy in this directory.
