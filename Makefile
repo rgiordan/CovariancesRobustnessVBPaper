@@ -1,15 +1,17 @@
 
+SHELL = /bin/bash
+
 # You'll have to download the raw criteo data here.
 # http://criteolabs.wpengine.com/downloads/2014-conversion-logs-dataset/
 
-GIT_REPO_LOC = $$(git rev-parse --show-toplevel)
+GIT_REPO_LOC := $(shell git rev-parse --show-toplevel)
 DATA_LOC = $(GIT_REPO_LOC)/code/data
-RAW_CRITEO_DATA = $(DATA_LOC)/
+CRITEO_DATA_LOC = $(DATA_LOC)/criteo
+RAW_CRITEO_TSV = $(CRITEO_DATA_LOC)/data.txt
 
-all: $(GIT_REPO_LOC)/foo
+all: $(RAW_CRITEO_TSV)
 	echo Hello!
-	echo $(git_repo_loc)
+	head $(RAW_CRITEO_TSV)
 
-$(GIT_REPO_LOC)/foo:
-	echo OKOK
-	echo wot > $(GIT_REPO_LOC)/foo
+$(RAW_CRITEO_TSV):
+	$(MAKE) -C $(CRITEO_DATA_LOC) all
