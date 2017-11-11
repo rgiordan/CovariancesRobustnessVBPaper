@@ -1,5 +1,4 @@
 # Don't check in any of the files from the zipfile.
-naive_baseline.py
-data.txt
-readme.txt
-recent_campaigns.txt
+*
+!.gitignore
+!Makefile

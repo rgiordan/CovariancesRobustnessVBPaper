@@ -1,12 +1,20 @@
+# Make the dataset for the paper from the raw Criteo data.
 
 SHELL = /bin/bash
 
-all: data.tsv
-	echo Hello!
-	head $(RAW_CRITEO_DATA)
+criteo_data_for_paper.Rdata: criteo_data_clean.Rdata
+	./subsample_criteo_data.R
 
-data.tsv: criteo_conversion_logs.tar.gz
+criteo_data_clean.Rdata: data.Rdata
+	./clean_criteo_data.R
+
+data.Rdata: data.txt
+	./criteo_data_text_to_rdata.R
+
+data.txt: criteo_conversion_logs.tar.gz
 	tar -xzvf criteo_conversion_logs.tar.gz
+	# Update the date on data.txt so make doesn't re-run every time.
+	touch data.txt
 
 criteo_conversion_logs.tar.gz:
 	@echo -e "\n\n\n-----------------"
