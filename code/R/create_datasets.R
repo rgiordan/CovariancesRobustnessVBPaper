@@ -7,7 +7,7 @@ library(jsonlite)
 library(boot) # for inv.logit
 
 git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
-data_directory <- file.path(project_directory, "code/data/")
+data_directory <- file.path(git_repo, "code/data/")
 input_rdata_filename <- file.path(data_directory, "criteo/criteo_data_for_paper.Rdata")
 json_filename <- file.path(
   data_directory, paste(analysis_name, "_stan_dat.json", sep=""))
@@ -88,6 +88,6 @@ stan_dat <- list(NG = max(y_g) + 1,
 
 # Export the data in JSON so it can be read by both Stan and Python.
 json_file <- file(json_filename, "w")
-json_list <- toJSON(list(stan_dat=stan_dat, true_params=true_params))
+json_list <- toJSON(list(stan_dat=stan_dat, true_params=true_params, iters=iters))
 write(json_list, file=json_file)
 close(json_file)
