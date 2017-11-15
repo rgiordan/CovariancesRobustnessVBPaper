@@ -1,45 +1,35 @@
-
-# coding: utf-8
-
-# In[2]:
-
-import LinearResponseVariationalBayes as vb
-import LinearResponseVariationalBayes.ExponentialFamilies as ef
-
-import LogisticGLMM_lib as logit_glmm
-from LinearResponseVariationalBayes.SparseObjectives import Objective, unpack_csr_matrix
-
-import matplotlib.pyplot as plt
-get_ipython().magic(u'matplotlib inline')
-
-#import numpy as np
-
-import autograd
-import autograd.numpy as np
+#!/usr/bin/env python3
 
 import copy
-from scipy import optimize
-
-import os
 import json
 
-import time
+import LinearResponseVariationalBayes as vb
+import logistic_glmm_lib as logit_glmm
+import LinearResponseVariationalBayes.SparseObjectives as obj_lib
 
+
+import numpy as np
+import os
 import pickle
 
+from scikits.sparse.cholmod import cholesky
+import scipy as sp
+from scipy.sparse.linalg import LinearOperator
 
-# In[ ]:
-
-# Load data saved by stan_results_to_json.R and run_stan.R in LRVBLogitGLMM.
+import subprocess
 
 #analysis_name = 'simulated_data_small'
 analysis_name = 'criteo_subsampled'
 
-data_dir = os.path.join(os.environ['GIT_REPO_LOC'],
-                        'VariationalBayesPythonWorkbench/Models/LogisticGLMM/data')
+git_dir_cmd = subprocess.run(
+    ['git', 'rev-parse', '--show-toplevel'], stdout=subprocess.PIPE)
+assert git_dir_cmd.returncode == 0
+git_dir = git_dir_cmd.stdout.decode("utf-8").strip()
 
+data_dir = os.path.join(git_dir, 'code/data')
 
-pickle_output_filename = os.path.join(data_dir, '%s_python_vb_results.pkl' % analysis_name)
+pickle_output_filename = os.path.join(
+    data_dir, '%s_python_vb_results.pkl' % analysis_name)
 
 pkl_file = open(pickle_output_filename, 'rb')
 vb_results = pickle.load(pkl_file)
