@@ -6,6 +6,8 @@ library(reshape2)
 library(jsonlite)
 library(boot) # for inv.logit
 
+analysis_name <- "criteo_subsampled"
+
 git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
 data_directory <- file.path(git_repo, "code/data/")
 input_rdata_filename <- file.path(data_directory, "criteo/criteo_data_for_paper.Rdata")
@@ -13,8 +15,6 @@ json_filename <- file.path(
   data_directory, paste(analysis_name, "_stan_dat.json", sep=""))
 
 cat("Loading data from", input_rdata_filename, "\n")
-
-analysis_name <- "criteo_subsampled"
 
 # If you set the analysis name to this value, it will simulate a small dataset
 # instead of loading the criteo data.  This allows for faster iteration and
@@ -88,6 +88,7 @@ stan_dat <- list(NG = max(y_g) + 1,
 
 # Export the data in JSON so it can be read by both Stan and Python.
 json_file <- file(json_filename, "w")
+cat("Saving data to", json_filename, "\n")
 json_list <- toJSON(list(stan_dat=stan_dat, true_params=true_params, iters=iters))
 write(json_list, file=json_file)
 close(json_file)
