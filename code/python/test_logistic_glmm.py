@@ -126,6 +126,8 @@ class TestModel(unittest.TestCase):
         global_model.glmm_par.set_free(free_par)
         group_model.glmm_par.set_free(free_par)
 
+        # TODO: this is failing because you need to set with a float-valued
+        # free parameter before re-evaluating any derivatives.
         sparse_vector_hess = \
             group_model.get_sparse_kl_vec_hessian() + \
             global_model.get_sparse_kl_vec_hessian()

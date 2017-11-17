@@ -32,20 +32,15 @@ stan_dat <- json_dat$stan_dat
 
 stan_dir <- file.path(git_repo, "code/R/stan/")
 stan_model_name <- "logit_glmm"
-model_file_rdata <- file.path(stan_dir, paste(stan_model_name, "Rdata", sep="."))
-if (file.exists(model_file_rdata)) {
-  print("Loading pre-compiled Stan model.")
-  load(model_file_rdata)
-} else {
-  # Run this to force re-compilation of the model.
-  print("Compiling Stan model.")
-  # In the stan directory run
-  # StanSensitivity/python/generate_models.py --base_model=logit_glmm.stan
-  model_file <- file.path(stan_dir, paste(stan_model_name, "_generated.stan", sep=""))
-  model <- stan_model(model_file)
-  stan_sensitivity_model <- GetStanSensitivityModel(file.path(stan_dir, "logit_glmm"), stan_dat)
-  save(model, stan_sensitivity_model, file=model_file_rdata)
-}
+
+# Complie the Stan model.
+print("Compiling Stan model.")
+
+# To make the sensitivity scripts, run the following command in the stan directory:
+# StanSensitivity/python/generate_models.py --base_model=logit_glmm.stan
+model_file <- file.path(stan_dir, paste(stan_model_name, "_generated.stan", sep=""))
+model <- stan_model(model_file)
+stan_sensitivity_model <- GetStanSensitivityModel(file.path(stan_dir, "logit_glmm"), stan_dat)
 
 
 ###################
