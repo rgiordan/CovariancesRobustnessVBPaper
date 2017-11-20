@@ -68,7 +68,7 @@ sens_result <- GetStanSensitivityFromModelFit(stan_sim, draws_mat, stan_sensitiv
 mcmc_sens_time <- Sys.time() - mcmc_sens_time
 
 # Save the results to an RData file for further post-processing.
-save(stan_sim, mcmc_time, stan_dat, true_params,
+save(stan_sim, mcmc_time, stan_dat,
      sens_result, stan_sensitivity_model, mcmc_sens_time,
      chains, cores,
      file=stan_draws_file)
