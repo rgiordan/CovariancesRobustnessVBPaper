@@ -397,7 +397,7 @@ class LogisticGLMM(object):
         self.group_model.glmm_par.set_free(free_par)
         self.global_model.glmm_par.set_free(free_par)
         return get_free_hessian(
-            self, self.group_model, self.global_model,
+            self, self.group_model, self.global_model, free_par,
             print_every_n=print_every_n)
 
     def get_sparse_weight_free_jacobian(self, free_par, print_every_n=None):
@@ -506,9 +506,6 @@ class SubGroupsModel(object):
         self.kl_objective = obj_lib.Objective(
             self.group_par, self.get_group_kl)
 
-        # self.kl_global_objective = obj_lib.Objective(
-        #     self.global_par, self.get_global_kl)
-
         self.data_kl_objective = obj_lib.Objective(
             self.group_par, self.get_group_data_elbo)
         self.get_data_kl_objective_jac = autograd.jacobian(
@@ -599,7 +596,7 @@ class SubGroupsModel(object):
         return self.get_group_kl()
 
     # This is as a function of vector parameters.
-    def get_sparse_kl_vec_hessian(self, print_every_n=None):
+    def get_sparse_kl_vec_hessian(self, free_par, print_every_n=None):
         get_kl_re_grad = autograd.grad(
             self.get_group_kl_from_vectors, argnum=1)
         get_kl_offdiag_hess = autograd.jacobian(get_kl_re_grad, argnum=0)
@@ -610,6 +607,7 @@ class SubGroupsModel(object):
         sparse_group_hess = \
             osp.sparse.csr_matrix((full_hess_dim, full_hess_dim))
 
+        self.glmm_par.set_free(free_par)
         global_par_vec, global_indices = self.set_global_parameters()
         if print_every_n is None:
             print_every_n = self.model.num_groups - 1
@@ -644,7 +642,7 @@ class SubGroupsModel(object):
         return sparse_group_hess
 
     # This is as a function of the vector parameters.
-    def get_sparse_weight_vec_jacobian(self, print_every_n=None):
+    def get_sparse_weight_vec_jacobian(self, free_par, print_every_n=None):
         vector_param_size = self.glmm_par.vector_size()
         n_obs = self.model.x_mat.shape[0]
         weight_indices = np.arange(0, n_obs)
@@ -652,6 +650,7 @@ class SubGroupsModel(object):
             osp.sparse.csr_matrix((n_obs, vector_param_size))
         if print_every_n is None:
             print_every_n = self.model.num_groups - 1
+        self.glmm_par.set_free(free_par)
         for g in range(self.model.num_groups):
             if g % print_every_n == 0:
                 print('Group {} of {}'.format(g, self.model.num_groups - 1))
@@ -695,8 +694,9 @@ class GlobalModel(object):
         return self.model.get_kl()
 
     # This is as a function of the vector parameters.
-    def get_sparse_kl_vec_hessian(self, print_every_n=None):
+    def get_sparse_kl_vec_hessian(self, free_par, print_every_n=None):
         full_hess_dim = self.glmm_par.vector_size()
+        self.glmm_par.set_free(free_par)
         global_par_vec, global_indices = self.set_global_parameters()
         global_vec_hessian = \
             self.kl_objective.fun_vector_hessian(global_par_vec)
@@ -708,26 +708,28 @@ class GlobalModel(object):
 
 
 def get_sparse_weight_free_jacobian(
-    group_model, vector_jac=None, print_every_n=None):
+    group_model, free_par, vector_jac=None, print_every_n=None):
     if vector_jac is None:
         vector_jac = group_model.get_sparse_weight_vec_jacobian(
-            print_every_n=print_every_n)
+            free_par, print_every_n=print_every_n)
     free_to_vec_jacobian = \
         group_model.glmm_par.free_to_vector_jac(group_model.glmm_par.get_free())
     return vector_jac * free_to_vec_jacobian
 
 
-def get_free_hessian(glmm_model, group_model, global_model,
+def get_free_hessian(glmm_model, group_model, global_model, free_par,
                      vector_hess=None, print_every_n=None):
     if vector_hess is None:
         group_vec_hess = group_model.get_sparse_kl_vec_hessian(
-            print_every_n=print_every_n)
-        global_vec_hess = global_model.get_sparse_kl_vec_hessian()
+            free_par, print_every_n=print_every_n)
+        global_vec_hess = global_model.get_sparse_kl_vec_hessian(free_par)
         vector_hess = global_vec_hess + group_vec_hess
 
+    glmm_model.glmm_par.set_free(free_par)
     vector_grad = glmm_model.objective.fun_vector_grad(
         glmm_model.glmm_par.get_vector())
 
+    glmm_model.glmm_par.set_free(free_par)
     return convert_vector_to_free_hessian(
         glmm_model.glmm_par,
         glmm_model.glmm_par.get_free(),

@@ -98,29 +98,6 @@ class TestModel(unittest.TestCase):
             err_msg='Group model parameter equality')
 
         ######
-        # These tests were from when the group and global kl partitioned
-        # the model: {
-
-        # Checking that a single group is equal.
-        # single_group_kl = single_group_model.get_kl()
-        # sparse_kl = \
-        #     global_model.get_global_kl() + \
-        #     group_model.get_group_kl()
-        #
-        # np_test.assert_array_almost_equal(
-        #     single_group_kl, sparse_kl,
-        #     err_msg="Group model kl equality")
-        #
-        # # Checking the full kl is equal.
-        # sparse_kl = global_model.get_global_kl()
-        # for g in range(NG):
-        #     group_model.set_group_parameters([g])
-        #     sparse_kl += group_model.get_group_kl()
-        #
-        # np_test.assert_array_almost_equal(
-        #     model.objective.fun_free(free_par), sparse_kl)
-        # }
-
         # Check that the vector Hessian is equal.
         model.glmm_par.set_free(free_par)
         global_model.glmm_par.set_free(free_par)
@@ -129,8 +106,9 @@ class TestModel(unittest.TestCase):
         # TODO: this is failing because you need to set with a float-valued
         # free parameter before re-evaluating any derivatives.
         sparse_vector_hess = \
-            group_model.get_sparse_kl_vec_hessian() + \
-            global_model.get_sparse_kl_vec_hessian()
+            group_model.get_sparse_kl_vec_hessian(free_par) + \
+            global_model.get_sparse_kl_vec_hessian(free_par)
+        model.glmm_par.set_free(free_par)
         full_vector_hess = \
             model.objective.fun_vector_hessian(model.glmm_par.get_vector())
 
@@ -140,9 +118,10 @@ class TestModel(unittest.TestCase):
             err_msg='Sparse vector Hessian equality')
 
         # Check that the free Hessian is equal.
-        #sparse_hess = sparse_model.get_free_hessian(sparse_vector_hess)
         sparse_hess = logit_glmm.get_free_hessian(
-            model, group_model=group_model, global_model=global_model)
+            glmm_model=model, group_model=group_model, global_model=global_model,
+            free_par=free_par)
+        model.glmm_par.set_free(free_par)
         full_hess = model.objective.fun_free_hessian(
             model.glmm_par.get_free())
 
@@ -152,7 +131,7 @@ class TestModel(unittest.TestCase):
             err_msg='Sparse free Hessian equality')
 
         # Check that the weight jacobian is equal.
-        sparse_jac = group_model.get_sparse_weight_vec_jacobian()
+        sparse_jac = group_model.get_sparse_weight_vec_jacobian(free_par)
         def get_data_terms_vec(glmm_par_vec):
             model.glmm_par.set_vector(glmm_par_vec)
             return model.get_data_log_lik_terms()
@@ -184,7 +163,7 @@ class TestModel(unittest.TestCase):
             err_msg='Sparse vector Jacobian equality')
 
         sparse_free_jac = \
-            logit_glmm.get_sparse_weight_free_jacobian(group_model)
+            logit_glmm.get_sparse_weight_free_jacobian(group_model, free_par)
         get_weighted_kl_free_grad = autograd.grad(get_weighted_kl_free, argnum=0)
         get_weighted_kl_free_jac = autograd.jacobian(
             get_weighted_kl_free_grad, argnum=1)
