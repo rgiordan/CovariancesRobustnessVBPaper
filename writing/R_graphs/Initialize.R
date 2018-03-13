@@ -9,7 +9,9 @@ library(png)
 library(latex2exp)
 library(Matrix)
 
-paper_directory <- file.path(Sys.getenv("GIT_REPO_LOC"), "CovariancesRobustnessVBPaper")
+git_repo_loc <- system('git rev-parse --show-toplevel', intern=TRUE)
+paper_directory <- file.path(git_repo_loc, "CovariancesRobustnessVBPaper")
+data_path <- file.path(paper_directory, "writing/data/")
 
 opts_chunk$set(fig.pos='!h', fig.align='center', dev='png', dpi=300)
 knitr_debug <- FALSE
@@ -31,8 +33,6 @@ LoadIntoEnvironment <- function(filename) {
   return(my_env)
 }
 
-# The location of data for this paper.
-data_path <- file.path(paper_directory, "writing/data/")
 
 # A convenient funciton for extracting only the legend from a ggplot.
 # Taken from

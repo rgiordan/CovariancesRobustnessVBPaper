@@ -1,0 +1,4 @@
+# Don't check in any of the files from the zipfile.
+*
+!.gitignore
+!Makefile

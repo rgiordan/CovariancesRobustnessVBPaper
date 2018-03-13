@@ -1,0 +1,6 @@
+*.Rdata
+*.json
+*.csv
+*.pkl
+*.tsv
+*.tar.gz
