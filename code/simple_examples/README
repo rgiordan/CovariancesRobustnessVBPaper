@@ -1,0 +1,3 @@
+To run the simple examples for the paper, simply execute the notebook
+`ExamplesForPaper.ipynb`.  You may need to change the
+variable `git_repo_loc` to match the location of your clone of this repository.
