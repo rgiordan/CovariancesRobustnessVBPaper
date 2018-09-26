@@ -1,0 +1,14 @@
+Reproducing the ADVI results will be a little trickier than the other
+experiments because they rely on a custom branch of Stan and rstan.
+Eventually these changes will hopefully be incorporated into trunk,
+but in the meantime one must do a custom install.
+
+You'll need to check out and install the `add_hessian4` branch of
+my fork of `rstan`:
+https://github.com/rgiordan/rstan/tree/add_hessian4
+
+...and the `add_hessians2` branch of my fork of `stan`:
+https://github.com/rgiordan/stan/tree/add_hessians2
+
+Once these are installed, you should be able to run `advi_base.R`
+to generate the results.
