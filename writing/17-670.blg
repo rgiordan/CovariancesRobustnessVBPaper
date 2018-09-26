@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: 17-670.aux
+The style file: plainnat.bst
+Database file #1: variational_robustness.bib
+Warning--empty publisher in owen:2013:mcmcbook
+Warning--empty publisher in turner:2011:two
+You've used 60 entries,
+            2773 wiz_defined-function locations,
+            904 strings with 13350 characters,
+and the built_in function-call counts, 27431 in all, are:
+= -- 2436
+> -- 1466
+< -- 54
++ -- 499
+- -- 437
+* -- 2058
+:= -- 4139
+add.period$ -- 193
+call.type$ -- 60
+change.case$ -- 308
+chr.to.int$ -- 58
+cite$ -- 122
+duplicate$ -- 1365
+empty$ -- 2368
+format.name$ -- 539
+if$ -- 5848
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 68
+newline$ -- 314
+num.names$ -- 250
+pop$ -- 713
+preamble$ -- 1
+purify$ -- 261
+quote$ -- 0
+skip$ -- 1044
+stack$ -- 0
+substring$ -- 982
+swap$ -- 191
+text.length$ -- 16
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 600
+warning$ -- 2
+while$ -- 255
+width$ -- 0
+write$ -- 780
+(There were 2 warnings)

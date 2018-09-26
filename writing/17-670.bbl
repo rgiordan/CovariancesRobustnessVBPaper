@@ -1,0 +1,379 @@
+\begin{thebibliography}{60}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agresti and Kateri(2011)]{agresti:2011:categorical}
+A.~Agresti and M.~Kateri.
+\newblock \emph{Categorical Data Analysis}.
+\newblock Springer, 2011.
+
+\bibitem[Basu et~al.(1996)Basu, Jammalamadaka, and Liu]{basu:1996:local}
+S.~Basu, S.~Rao Jammalamadaka, and W.~Liu.
+\newblock Local posterior robustness with parametric priors: Maximum and
+  average sensitivity.
+\newblock In \emph{Maximum Entropy and {Bayesian} Methods}, pages 97--106.
+  Springer, 1996.
+
+\bibitem[Baydin et~al.(2018)Baydin, Pearlmutter, Radul, and
+  Siskind]{baydin:2015:autodiff}
+A.~Baydin, B.~Pearlmutter, A.~Radul, and J.~Siskind.
+\newblock Automatic differentiation in machine learning: a survey.
+\newblock \emph{Journal of Machine Learning Research}, 18:\penalty0 1--43,
+  2018.
+
+\bibitem[Berger et~al.(2000)Berger, Insua, and Ruggeri]{berger:2012:robust}
+J.~O. Berger, D.~R. Insua, and F.~Ruggeri.
+\newblock Robust {Bayesian} analysis.
+\newblock In D.~R. Insua and F.~Ruggeri, editors, \emph{Robust {Bayesian}
+  Analysis}, volume 152. Springer Science \& Business Media, 2000.
+
+\bibitem[Bishop(2006)]{bishop:2006:pattern}
+C.~M. Bishop.
+\newblock \emph{Pattern Recognition and Machine Learning}.
+\newblock Springer, New York, 2006.
+\newblock Chapter 10.
+
+\bibitem[Blei et~al.(2003)Blei, Ng, and Jordan]{blei:2003:lda}
+D.~Blei, A.~Y. Ng, and M.~I. Jordan.
+\newblock Latent {D}irichlet allocation.
+\newblock \emph{Journal of Machine Learning Research}, 3:\penalty0 993--1022,
+  2003.
+
+\bibitem[Blei et~al.(2016)Blei, Kucukelbir, and
+  McAuliffe]{blei:2016:variational}
+D.~Blei, A.~Kucukelbir, and J.~D. McAuliffe.
+\newblock Variational inference: A review for statisticians.
+\newblock \emph{arXiv preprint arXiv:1601.00670}, 2016.
+
+\bibitem[Carpenter et~al.(2015)Carpenter, Hoffman, Brubaker, Lee, Li, and
+  Betancourt]{carpenter:2015:stan}
+B.~Carpenter, M.~D. Hoffman, M.~Brubaker, D.~Lee, P.~Li, and M.~Betancourt.
+\newblock The {S}tan math library: Reverse-mode automatic differentiation in
+  {C++}.
+\newblock \emph{arXiv preprint arXiv:1509.07164}, 2015.
+
+\bibitem[Cook(1986)]{cook:1986:assessment}
+R.~D. Cook.
+\newblock Assessment of local influence.
+\newblock \emph{Journal of the Royal Statistical Society: Series B},
+  28\penalty0 (2):\penalty0 133--169, 1986.
+
+\bibitem[{Criteo Labs}(2014)]{criteo:2014:dataset}
+{Criteo Labs}.
+\newblock Criteo conversion logs dataset, 2014.
+\newblock URL
+  \url{http://criteolabs.wpengine.com/downloads/2014-conversion-logs-dataset/}.
+\newblock Downloaded on July 27th, 2017.
+
+\bibitem[Diaconis and Freedman(1986)]{diaconis:1986:consistency}
+P.~Diaconis and D.~Freedman.
+\newblock On the consistency of {Bayes} estimates.
+\newblock \emph{The Annals of Statistics}, 14\penalty0 (1):\penalty0 1--26,
+  1986.
+
+\bibitem[Efron(2015)]{efron:2015:frequentist}
+B.~Efron.
+\newblock Frequentist accuracy of {Bayesian} estimates.
+\newblock \emph{Journal of the Royal Statistical Society: Series B},
+  77\penalty0 (3):\penalty0 617--646, 2015.
+
+\bibitem[Fleming(1965)]{fleming:1965:functions}
+W.~H. Fleming.
+\newblock \emph{Functions of Several Variables}.
+\newblock Addison-Wesley Publishing Company, Inc., 1965.
+
+\bibitem[Gelman and Hill(2006)]{gelman:2006:arm}
+A.~Gelman and J.~Hill.
+\newblock \emph{Data analysis using regression and multilevel/hierarchical
+  models}.
+\newblock Cambridge university press, 2006.
+
+\bibitem[Gelman et~al.(2014)Gelman, Carlin, Stern, and
+  Rubin]{gelman:2014:bayesian}
+A.~Gelman, J.~B. Carlin, H.~S. Stern, and D.~B. Rubin.
+\newblock \emph{{Bayesian} Data Analysis}, volume~2.
+\newblock Chapman \& Hall/CRC, 2014.
+
+\bibitem[Giordano et~al.(2015)Giordano, Broderick, and
+  Jordan]{giordano:2015:lrvb}
+R.~J. Giordano, T.~Broderick, and M.~I. Jordan.
+\newblock Linear response methods for accurate covariance estimates from mean
+  field variational {B}ayes.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  1441--1449, 2015.
+
+\bibitem[Giordano et~al.(2016)Giordano, Broderick, Meager, Huggins, and
+  Jordan]{giordano:2016:robust}
+R.~J. Giordano, T.~Broderick, R.~Meager, J.~Huggins, and M.~I. Jordan.
+\newblock Fast robustness quantification with variational {Bayes}.
+\newblock \emph{arXiv preprint arXiv:1606.07153}, 2016.
+
+\bibitem[Gustafson(1996{\natexlab{a}})]{gustafson:1996:localmarginals}
+P.~Gustafson.
+\newblock Local sensitivity of inferences to prior marginals.
+\newblock \emph{Journal of the American Statistical Association}, 91\penalty0
+  (434):\penalty0 774--781, 1996{\natexlab{a}}.
+
+\bibitem[Gustafson(1996{\natexlab{b}})]{gustafson:1996:localposterior}
+P.~Gustafson.
+\newblock Local sensitivity of posterior expectations.
+\newblock \emph{The Annals of Statistics}, 24\penalty0 (1):\penalty0 174--195,
+  1996{\natexlab{b}}.
+
+\bibitem[Gustafson(2000)]{gustafson:2012:localrobustnessbook}
+P.~Gustafson.
+\newblock Local robustness in {Bayesian} analysis.
+\newblock In D.~R. Insua and F.~Ruggeri, editors, \emph{Robust {Bayesian}
+  Analysis}, volume 152. Springer Science \& Business Media, 2000.
+
+\bibitem[Huber(2011)]{huber:2011:robust}
+P.~J. Huber.
+\newblock \emph{Robust Statistics}.
+\newblock Springer, 2011.
+
+\bibitem[Insua and Criado(2000)]{insua:2012:robustaxioms}
+D.~R. Insua and R.~Criado.
+\newblock Topics on the foundations of robust {Bayesian} analysis.
+\newblock In D.~R. Insua and F.~Ruggeri, editors, \emph{Robust {Bayesian}
+  Analysis}, volume 152. Springer Science \& Business Media, 2000.
+
+\bibitem[Jones et~al.(2001)Jones, Oliphant, Peterson, et~al.]{scipy}
+E.~Jones, T.~Oliphant, P.~Peterson, et~al.
+\newblock {SciPy}: Open source scientific tools for {Python}, 2001.
+\newblock URL \url{http://www.scipy.org/}.
+
+\bibitem[Kappen and Rodriguez(1998)]{kappen:1998:efficient}
+H.~J. Kappen and F.~B. Rodriguez.
+\newblock Efficient learning in {B}oltzmann machines using linear response
+  theory.
+\newblock \emph{Neural Computation}, 10\penalty0 (5):\penalty0 1137--1156,
+  1998.
+
+\bibitem[Keener(2010)]{keener:2011:theoretical}
+R.~W. Keener.
+\newblock \emph{Theoretical Statistics: Topics for a Core Course}.
+\newblock Springer Science \& Business Media, 2010.
+
+\bibitem[K{\'e}ry and Schaub(2011)]{kery:2011:bpa}
+M.~K{\'e}ry and M.~Schaub.
+\newblock \emph{Bayesian population analysis using WinBUGS: a hierarchical
+  perspective}.
+\newblock Academic Press, 2011.
+
+\bibitem[Kingma and Welling(2013)]{kingma:2013:auto}
+D.~P. Kingma and M.~Welling.
+\newblock Auto-encoding variational {Bayes}.
+\newblock \emph{arXiv preprint arXiv:1312.6114}, 2013.
+
+\bibitem[Kucukelbir et~al.(2017)Kucukelbir, Tran, Ranganath, Gelman, and
+  Blei]{kucukelbir:2017:advi}
+A.~Kucukelbir, D.~Tran, R.~Ranganath, A.~Gelman, and D.~Blei.
+\newblock Automatic differentiation variational inference.
+\newblock \emph{The Journal of Machine Learning Research}, 18\penalty0
+  (1):\penalty0 430--474, 2017.
+
+\bibitem[Le~Cam and Yang(2012)]{lecam:2012:asymptotics}
+L.~Le~Cam and G.~L. Yang.
+\newblock \emph{Asymptotics in Statistics: Some Basic Concepts}.
+\newblock Springer Science \& Business Media, 2012.
+
+\bibitem[Lewandowski et~al.(2009)Lewandowski, Kurowicka, and
+  Joe]{lewandowski:2009:lkj}
+D.~Lewandowski, D.~Kurowicka, and H.~Joe.
+\newblock Generating random correlation matrices based on vines and extended
+  onion method.
+\newblock \emph{Journal of Multivariate Analysis}, 100\penalty0 (9):\penalty0
+  1989--2001, 2009.
+
+\bibitem[Liu and Wang(2016)]{liu:2016:stein}
+Q.~Liu and D.~Wang.
+\newblock Stein variational gradient descent: A general purpose {Bayesian}
+  inference algorithm.
+\newblock In \emph{Advances In Neural Information Processing Systems}, pages
+  2370--2378, 2016.
+
+\bibitem[MacKay(2003)]{mackay:2003:information}
+D.~J.~C. MacKay.
+\newblock \emph{Information Theory, Inference, and Learning Algorithms}.
+\newblock Cambridge University Press, 2003.
+\newblock Chapter 33.
+
+\bibitem[Maclaurin et~al.(2015)Maclaurin, Duvenaud, and
+  Adams]{maclaurin:2015:autograd}
+D.~Maclaurin, D.~Duvenaud, and R.~P. Adams.
+\newblock Autograd: Effortless gradients in numpy.
+\newblock In \emph{International Conference on Machine Learning 2015 AutoML
+  Workshop}, 2015.
+
+\bibitem[Moreno(2000)]{moreno:2012:globalrobustness}
+E.~Moreno.
+\newblock Global {Bayesian} robustness for some classes of prior distributions.
+\newblock In D.~R. Insua and F.~Ruggeri, editors, \emph{Robust {Bayesian}
+  Analysis}, volume 152. Springer Science \& Business Media, 2000.
+
+\bibitem[Neal and Hinton(1998)]{neal:1998:variationalEM}
+R.~M. Neal and G.~E. Hinton.
+\newblock A view of the {EM} algorithm that justifies incremental, sparse, and
+  other variants.
+\newblock In \emph{Learning in Graphical Models}, pages 355--368. Springer,
+  1998.
+
+\bibitem[Opper and Saad(2001)]{opper:2001:advancedmeanfield}
+M.~Opper and D.~Saad.
+\newblock \emph{Advanced Mean Field Methods: Theory and Practice}.
+\newblock MIT press, 2001.
+
+\bibitem[Opper and Winther(2004)]{opper:2003:variational}
+M.~Opper and O.~Winther.
+\newblock Variational linear response.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  1157--1164, 2004.
+
+\bibitem[Owen(2013)]{owen:2013:mcmcbook}
+A.~B. Owen.
+\newblock \emph{Monte Carlo Theory, Methods and Examples}.
+\newblock 2013.
+\newblock URL \url{http://statweb.stanford.edu/~owen/mc/}.
+\newblock Accessed November 23rd, 2016.
+
+\bibitem[P{\'e}rez et~al.(2006)P{\'e}rez, Mart{\'\i}n, and
+  Rufo]{perez:2006:mcmc}
+C.~J. P{\'e}rez, J.~Mart{\'\i}n, and M.~J. Rufo.
+\newblock {MCMC}-based local parametric sensitivity estimations.
+\newblock \emph{Computational Statistics \& Data Analysis}, 51\penalty0
+  (2):\penalty0 823--835, 2006.
+
+\bibitem[Ranganath et~al.(2016)Ranganath, Tran, and
+  Blei]{ranganath:2015:hierarchical}
+R.~Ranganath, D.~Tran, and D.~Blei.
+\newblock Hierarchical variational models.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  324--333, 2016.
+
+\bibitem[Regier et~al.(2015)Regier, Miller, McAuliffe, Adams, Hoffman, Lang,
+  Schlegel, and Prabhat]{regier:2015:celeste}
+J.~Regier, A.~Miller, J.~McAuliffe, R.~Adams, M.~Hoffman, D.~Lang, D.~Schlegel,
+  and M.~Prabhat.
+\newblock Celeste: Variational inference for a generative model of astronomical
+  images.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  2095--2103, 2015.
+
+\bibitem[Rezende et~al.(2014)Rezende, Mohamed, and
+  Wierstra]{rezende:2014:stochastic}
+D.~Rezende, S.~Mohamed, and D.~Wierstra.
+\newblock Stochastic backpropagation and approximate inference in deep
+  generative models.
+\newblock \emph{arXiv preprint arXiv:1401.4082}, 2014.
+
+\bibitem[Rezende and Mohamed(2015)]{rezende:2015:flows}
+Danilo Rezende and Shakir Mohamed.
+\newblock Variational inference with normalizing flows.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  1530--1538, 2015.
+
+\bibitem[Roos et~al.(2015)Roos, Martins, Held, and Rue]{roos:2015:sensitivity}
+M.~Roos, T.~G. Martins, L.~Held, and H.~Rue.
+\newblock Sensitivity analysis for {Bayesian} hierarchical models.
+\newblock \emph{{Bayesian} Analysis}, 10\penalty0 (2):\penalty0 321--349, 2015.
+
+\bibitem[{Stan Team}(2015)]{stan-manual:2015}
+{Stan Team}.
+\newblock \emph{Stan Modeling Language Users Guide and Reference Manual,
+  Version 2.8.0}, 2015.
+\newblock URL \url{http://mc-stan.org/}.
+
+\bibitem[{Stan Team}(2017)]{stan-examples:2017}
+{Stan Team}.
+\newblock Stan example models wiki, 2017.
+\newblock URL \url{https://github.com/stan-dev/example-models/wiki}.
+\newblock Referenced on May 19th, 2017.
+
+\bibitem[Tanaka(1998)]{tanaka:1998:mean}
+T.~Tanaka.
+\newblock Mean-field theory of {B}oltzmann machine learning.
+\newblock \emph{Physical Review E}, 58\penalty0 (2):\penalty0 2302, 1998.
+
+\bibitem[Tanaka(2000)]{tanaka:2000:information}
+T.~Tanaka.
+\newblock Information geometry of mean-field approximation.
+\newblock \emph{Neural Computation}, 12\penalty0 (8):\penalty0 1951--1968,
+  2000.
+
+\bibitem[Titsias and L{\'a}zaro-Gredilla(2014)]{titsias:2014:doubly}
+Michalis Titsias and Miguel L{\'a}zaro-Gredilla.
+\newblock Doubly stochastic variational {Bayes} for non-conjugate inference.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  1971--1979, 2014.
+
+\bibitem[Tran et~al.(2015{\natexlab{a}})Tran, Blei, and
+  Airoldi]{tran:2015:copula}
+D.~Tran, D.~Blei, and E.~M. Airoldi.
+\newblock Copula variational inference.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  3564--3572, 2015{\natexlab{a}}.
+
+\bibitem[Tran et~al.(2015{\natexlab{b}})Tran, Ranganath, and
+  Blei]{tran:2015:gp}
+D.~Tran, R.~Ranganath, and D.~Blei.
+\newblock The variational {G}aussian process.
+\newblock \emph{arXiv preprint arXiv:1511.06499}, 2015{\natexlab{b}}.
+
+\bibitem[Turner and Sahani(2011)]{turner:2011:two}
+R.~E. Turner and M.~Sahani.
+\newblock Two problems with variational expectation maximisation for
+  time-series models.
+\newblock In D.~Barber, A.~T. Cemgil, and S.~Chiappa, editors, \emph{{Bayesian}
+  Time Series Models}. 2011.
+
+\bibitem[Wainwright and Jordan(2008)]{wainwright2008graphical}
+M.~J. Wainwright and M.~I. Jordan.
+\newblock Graphical models, exponential families, and variational inference.
+\newblock \emph{Foundations and Trends in Machine Learning}, 1\penalty0
+  (1-2):\penalty0 1--305, 2008.
+
+\bibitem[Wang and Titterington(2004)]{wang:2005:inadequacy}
+B.~Wang and M.~Titterington.
+\newblock Inadequacy of interval estimates corresponding to variational
+  {B}ayesian approximations.
+\newblock In \emph{Workshop on Artificial Intelligence and Statistics}, pages
+  373--380, 2004.
+
+\bibitem[Wang and Blei(2017)]{wang:2017:vbconsistency}
+Y.~Wang and D.~M. Blei.
+\newblock Frequentist consistency of variational {Bayes}.
+\newblock \emph{arXiv preprint arXiv:1705.03439}, 2017.
+
+\bibitem[Welling and Teh(2004)]{welling:2004:linear}
+M.~Welling and Y.~W. Teh.
+\newblock Linear response algorithms for approximate inference in graphical
+  models.
+\newblock \emph{Neural Computation}, 16\penalty0 (1):\penalty0 197--221, 2004.
+
+\bibitem[Westling and McCormick(2015)]{westling:2015:vbconsistency}
+T.~Westling and T.~H. McCormick.
+\newblock Establishing consistency and improving uncertainty estimates of
+  variational inference through m-estimation.
+\newblock \emph{arXiv preprint arXiv:1510.08151}, 2015.
+
+\bibitem[Wright and Nocedal(1999)]{nocedalwright:1999:numerical}
+S.~Wright and J.~Nocedal.
+\newblock Numerical optimization.
+\newblock \emph{Springer Science}, 35:\penalty0 67--68, 1999.
+
+\bibitem[Zhu et~al.(2007)Zhu, Ibrahim, Lee, and Zhang]{zhu:2007:perturbation}
+H.~Zhu, J.~G. Ibrahim, S.~Lee, and H.~Zhang.
+\newblock Perturbation selection and influence measures in local influence
+  analysis.
+\newblock \emph{The Annals of Statistics}, 35\penalty0 (6):\penalty0
+  2565--2588, 2007.
+
+\bibitem[Zhu et~al.(2011)Zhu, Ibrahim, and Tang]{zhu:2011:bayesian}
+H.~Zhu, J.~G. Ibrahim, and N.~Tang.
+\newblock {Bayesian} influence analysis: A geometric approach.
+\newblock \emph{Biometrika}, 98\penalty0 (2):\penalty0 307--323, 2011.
+
+\end{thebibliography}
