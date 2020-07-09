@@ -11,10 +11,12 @@ library(LRVBUtils)
 library(mvtnorm)
 library(gridExtra)
 
-project_directory <- file.path(
-  Sys.getenv("GIT_REPO_LOC"),
-  "VariationalBayesPythonWorkbench/Models/LogisticGLMM")
-data_directory <- file.path(project_directory, "data/")
+git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
+#data_directory <- file.path(project_directory, "data/")
+data_directory <- file.path(git_repo, "code/criteo_experiment/data/")
+# project_directory <- file.path(
+#   Sys.getenv("GIT_REPO_LOC"),
+#   "VariationalBayesPythonWorkbench/Models/LogisticGLMM")
 
 source(file.path(project_directory, "logit_glmm_lib.R"))
 source(file.path(project_directory, "densities_lib.R"))
@@ -85,7 +87,7 @@ glmm_list$glmm_res <- glmm_res
 if (save_results) {
   print(sprintf("Saving to %s", glmer_results_file))
   save(glmm_list, file=glmer_results_file)
-  
+
   # Save in JSON for reading in Python
   json_filename <- file.path(
     data_directory, paste(analysis_name, "_glmer_results.json", sep=""))
@@ -96,4 +98,3 @@ if (save_results) {
   write(json_list, file=json_file)
   close(json_file)
 }
-
