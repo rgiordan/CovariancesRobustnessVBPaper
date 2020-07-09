@@ -3,8 +3,8 @@
 SHELL = /bin/bash
 
 GIT_REPO_LOC := $(shell git rev-parse --show-toplevel)
-R_SCRIPT_LOC := $(GIT_REPO_LOC)/code/R/
-PY_SCRIPT_LOC := $(GIT_REPO_LOC)/code/python/
+R_SCRIPT_LOC := $(GIT_REPO_LOC)/code/criteo_experiment/R/
+PY_SCRIPT_LOC := $(GIT_REPO_LOC)/code/criteo_experiment/python/
 
 
 all: criteo_subsampled_python_vb_results.pkl, \
