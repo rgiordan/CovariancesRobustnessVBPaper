@@ -4,6 +4,12 @@ SHELL = /bin/bash
 
 all: criteo_data_for_paper.Rdata
 
+clean:
+	rm -f criteo_data_for_paper.Rdata
+	rm -f criteo_data_clean.Rdata
+	rm -f data.Rdata
+	rm -f data.txt
+
 criteo_data_for_paper.Rdata: criteo_data_clean.Rdata
 	@echo "Running subsample_criteo_data.R"
 	./subsample_criteo_data.R

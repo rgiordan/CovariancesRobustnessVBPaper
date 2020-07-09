@@ -13,6 +13,13 @@ all: criteo_subsampled_python_vb_results.pkl, \
 	 criteo_subsampled_mcmc_draws.Rdata
 	@echo "READY TO GO"
 
+clean:
+	rm -f criteo_subsampled_python_vb_perturbation_results.pkl
+	rm -f criteo_subsampled_python_vb_map_results.pkl
+	rm -f criteo_subsampled_python_vb_results.pkl
+	rm -f criteo_subsampled_mcmc_draws.Rdata
+	rm -f criteo_subsampled_stan_dat.json
+
 criteo_subsampled_python_vb_perturbation_results.pkl: \
 	criteo_subsampled_python_vb_results.pkl
 	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
