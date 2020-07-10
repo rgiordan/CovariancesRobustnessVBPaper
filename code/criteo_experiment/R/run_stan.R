@@ -14,7 +14,7 @@ rstan_options(auto_write=FALSE)
 # Load the data.
 
 git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
-data_dir <- file.path(git_repo, "criteo_experiment/code/data")
+data_dir <- file.path(git_repo, "code/criteo_experiment/data")
 
 analysis_name <- "criteo_subsampled"
 #analysis_name <- "simulated_data_small"
@@ -30,7 +30,7 @@ stan_draws_file <- file.path(
 json_dat <- fromJSON(readLines(json_filename))
 stan_dat <- json_dat$stan_dat
 
-stan_dir <- file.path(git_repo, "code/R/stan/")
+stan_dir <- file.path(git_repo, "code/criteo_experiment/R/stan/")
 stan_model_name <- "logit_glmm"
 
 # Complie the Stan model.
