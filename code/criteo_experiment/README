@@ -31,6 +31,14 @@ python3 -m ipykernel install --user --name=criteo_experiment_jmlr1951
 
 To delete this kernel when you are through, you can run ``jupyter kernelspec list`` and delete the directory corresponding to the ``bnpgmm_runjingdev`` kernel.
 
+############
+
+Run
+
+~~~
+python/test_logistic_glmm.py
+~~~
+
 
 ################
 

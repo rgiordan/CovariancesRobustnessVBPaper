@@ -1,1 +1,3 @@
 venv/**
+*.nbconvert.ipynb
+.ipynb_checkpoints/**
