@@ -26,7 +26,7 @@ git_dir_cmd = subprocess.run(
 assert git_dir_cmd.returncode == 0
 git_dir = git_dir_cmd.stdout.decode("utf-8").strip()
 
-data_dir = os.path.join(git_dir, 'code/data')
+data_dir = os.path.join(git_dir, 'code/criteo_experiment/data')
 
 pickle_output_filename = os.path.join(
     data_dir, '%s_python_vb_results.pkl' % analysis_name)
