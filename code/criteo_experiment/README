@@ -22,6 +22,9 @@ To create a virtual environment and install the package, create an empyt directo
 ~~~
 python3 -m venv venv
 source venv/bin/activate
+pip install numpy
+pip install wheel
+pip install -r requirements.txt
 pip install -e .
 python3 -m ipykernel install --user --name=criteo_experiment_jmlr1951
 ~~~

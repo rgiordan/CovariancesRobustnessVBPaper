@@ -12,7 +12,7 @@ import numpy as np
 import os
 import pickle
 
-from scikits.sparse.cholmod import cholesky
+from sksparse.cholmod import cholesky
 import scipy as sp
 from scipy.sparse.linalg import LinearOperator
 
