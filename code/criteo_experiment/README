@@ -1,3 +1,5 @@
+
+
 The code to generate the results for the Criteo experiment in the
 paper can currently be found in the following repositories:
 
@@ -12,3 +14,37 @@ assistance as necessary.
 
 To begin, you may cross your fingers attempt to run `make` in the current
 directory.
+
+##############
+
+To create a virtual environment and install the package, create an empyt directory ``venv`` and run
+
+~~~
+python3 -m venv venv
+source venv/bin/activate
+pip install numpy
+pip install wheel
+pip install -r requirements.txt
+pip install -e .
+python3 -m ipykernel install --user --name=criteo_experiment_jmlr1951
+~~~
+
+To delete this kernel when you are through, you can run ``jupyter kernelspec list`` and delete the directory corresponding to the ``bnpgmm_runjingdev`` kernel.
+
+############
+
+Run
+
+~~~
+python/test_logistic_glmm.py
+~~~
+
+
+################
+
+You must additionally manually install
+[``scikit-sparse``](https://github.com/scikit-sparse/scikit-sparse/),
+which requires the C++ libraries in ``libsuitesparse-dev``.
+See the
+[``scikit-sparse`` requirements](https://scikit-sparse.readthedocs.io/en/latest/overview.html#requirements)
+for more details on installation.

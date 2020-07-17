@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
-working_dir <- file.path(git_repo, "code/data/criteo")
+working_dir <- file.path(git_repo, "code/criteo_experiment/data/criteo")
 raw_data_filename <- file.path(working_dir, "data.txt")
 rdata_filename <- file.path(working_dir, "data.Rdata")
 

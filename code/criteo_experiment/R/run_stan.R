@@ -30,7 +30,7 @@ stan_draws_file <- file.path(
 json_dat <- fromJSON(readLines(json_filename))
 stan_dat <- json_dat$stan_dat
 
-stan_dir <- file.path(git_repo, "code/R/stan/")
+stan_dir <- file.path(git_repo, "code/criteo_experiment/R/stan/")
 stan_model_name <- "logit_glmm"
 
 # Complie the Stan model.
