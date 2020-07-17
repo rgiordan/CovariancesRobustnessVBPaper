@@ -10,7 +10,8 @@ CRITEO_RDATA = $(CRITEO_DATA_LOC)/criteo_data_for_paper.Rdata
 
 all: $(CRITEO_RDATA)
 	echo Ready to go!
-	ls -l $(CRITEO_RDATA)
+	$(MAKE) -C $(DATA_LOC) all
 
+# Post-process the Criteo data
 $(CRITEO_RDATA):
 	$(MAKE) -C $(CRITEO_DATA_LOC) all

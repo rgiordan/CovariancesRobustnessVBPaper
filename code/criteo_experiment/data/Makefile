@@ -7,9 +7,9 @@ R_SCRIPT_LOC := $(GIT_REPO_LOC)/code/R/
 PY_SCRIPT_LOC := $(GIT_REPO_LOC)/code/python/
 
 
-all: criteo_subsampled_python_vb_results.pkl, \
-	 criteo_subsampled_python_vb_map_results.pkl, \
-	 criteo_subsampled_python_vb_perturbation_results.pkl, \
+all: criteo_subsampled_python_vb_results.pkl \
+	 criteo_subsampled_python_vb_map_results.pkl \
+	 criteo_subsampled_python_vb_perturbation_results.pkl \
 	 criteo_subsampled_mcmc_draws.Rdata
 	@echo "READY TO GO"
 
