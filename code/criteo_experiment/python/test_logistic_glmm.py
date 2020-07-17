@@ -3,6 +3,7 @@
 import LinearResponseVariationalBayes as vb
 import logistic_glmm_lib as logit_glmm
 import LinearResponseVariationalBayes.SparseObjectives as obj_lib
+from sksparse.cholmod import cholesky
 
 import autograd
 import unittest
@@ -50,6 +51,15 @@ class TestModel(unittest.TestCase):
 
         moment_wrapper = logit_glmm.MomentWrapper(glmm_par)
         moment_wrapper.get_moment_vector_from_free(free_par)
+
+        # Make sure we can Cholesky solve (this is mostly to make sure
+        # we have the old versions of the libraries correctly configured)
+        kl_hess = model.get_sparse_free_hessian(free_par)
+        moment_jac = model.moment_wrapper.get_moment_jacobian(free_par)
+
+        kl_hess_chol = cholesky(kl_hess)
+        kl_inv_moment_jac = kl_hess_chol.solve_A(moment_jac.T)
+        lrvb_cov = np.matmul(moment_jac, kl_inv_moment_jac)
 
     def test_sparse_model(self):
         N = 17
@@ -206,8 +216,6 @@ class TestModel(unittest.TestCase):
             full_free_jac,
             np.asarray(sparse_free_jac.todense()),
             err_msg='Sparse free Jacobian equality')
-
-
 
 
 if __name__ == '__main__':
