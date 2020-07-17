@@ -1,10 +1,10 @@
 ipykernel
-numpy==1.13.3
+numpy==1.16.1
 matplotlib==2.1.2
 pytest
 scikit-sparse==0.4.2
 scipy==0.19.0
-#LinearResponseVariationalBayes==0.2.0
+#LinearResponseVariationalBayes==0.2.0 # Currently broken
 git+git://github.com/rgiordan/LinearResponseVariationalBayes.py@notes#LinearResponseVariationalBayes
 jupyter-client==6.1.6
 jupyter-core==4.6.3

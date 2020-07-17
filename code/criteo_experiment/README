@@ -1,50 +1,48 @@
+This folder contains everything needed to post-process the Criteo data
+and run VB and Stan.
 
+To run it, you will first need to create a virtual environment and install the
+required libraries.  This is highly recommended, since we require old versions
+of some core packages to ensure that the results can still be generated even if
+there are non-backwards-compatible changes made at some point to dependencies.
 
-The code to generate the results for the Criteo experiment in the
-paper can currently be found in the following repositories:
-
-https://github.com/rgiordan/LinearResponseVariationalBayes.py/tree/master/Models/LogisticGLMM
-#https://github.com/rgiordan/criteo
-https://github.com/rgiordan/StanSensitivity
-https://github.com/rgiordan/LRVBUtils
-
-I will be gradually making the process of re-running the experiments more
-user-friendly.  In the meantime, please feel free to reach out to me for
-assistance as necessary.
-
-To begin, you may cross your fingers attempt to run `make` in the current
-directory.
-
-##############
-
-To create a virtual environment and install the package,  run
+First, create and activate a virtual environment:
 
 ~~~
 python3 -m venv venv
 source venv/bin/activate
+~~~
+
+You will need to have this virtual environment active whenever running
+python scripts.  Next, install the required packages and define a Jupyter
+kernel as follows.
+
+~~~
 pip install numpy
 pip install wheel
 pip install -r requirements.txt
-pip install -e .
 python3 -m ipykernel install --user --name=criteo_experiment_jmlr1951
 ~~~
 
-To delete this kernel when you are through, you can run ``jupyter kernelspec list`` and delete the directory corresponding to the ``bnpgmm_runjingdev`` kernel.
+To delete this kernel when you are through, you can run
+``jupyter kernelspec list`` and delete the directory corresponding to
+the ``criteo_experiment_jmlr1951`` kernel.
 
-############
-
-Run
-
-~~~
-python/test_logistic_glmm.py
-~~~
-
-
-################
-
-You must additionally manually install
+Note that we depend on
 [``scikit-sparse``](https://github.com/scikit-sparse/scikit-sparse/),
-which requires the C++ libraries in ``libsuitesparse-dev``.
+which requires the C++ libraries in ``libsuitesparse-dev``.  These may
+need to be installed manually.
 See the
 [``scikit-sparse`` requirements](https://scikit-sparse.readthedocs.io/en/latest/overview.html#requirements)
 for more details on installation.
+
+Check that everything is installed correctly by running the tests.
+
+```
+python/test_logistic_glmm.py
+```
+
+If the tests pass, you should be ready to go.  Run `make` in the current
+directory.  The first time you run it, you should be prompted to
+manually download the raw Criteo data from the specified location.
+Once you have done so, run `make` again until successful completion.
