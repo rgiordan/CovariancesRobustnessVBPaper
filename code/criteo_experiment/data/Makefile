@@ -1,4 +1,7 @@
 # Run the analyses for the paper.
+#
+# Note that ExecutePreprocessor.timeout sets the cell timeout in seconds.
+# You may want to set this to be a larger value depending on your computes.
 
 SHELL = /bin/bash
 
@@ -23,21 +26,21 @@ clean:
 criteo_subsampled_python_vb_perturbation_results.pkl:
 	@echo "Running "$(PY_SCRIPT_LOC)/LogisticGLMMPerturbations.ipynb
 	source $(VENV_LOC)
-	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
+	jupyter nbconvert --ExecutePreprocessor.timeout=1200 \
 	    --to notebook --execute \
 		$(PY_SCRIPT_LOC)/LogisticGLMMPerturbations.ipynb
 
 criteo_subsampled_python_vb_map_results.pkl:
 	@echo "Running "$(PY_SCRIPT_LOC)/LogisticGLMM_MAP.ipynb
 	source $(VENV_LOC)
-	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
+	jupyter nbconvert --ExecutePreprocessor.timeout=1200 \
 	    --to notebook --execute \
 		$(PY_SCRIPT_LOC)/LogisticGLMM_MAP.ipynb
 
 criteo_subsampled_python_vb_results.pkl: criteo_subsampled_stan_dat.json
 	@echo "Running "$(PY_SCRIPT_LOC)/LogisticGLMM.ipynb
 	source $(VENV_LOC)
-	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
+	jupyter nbconvert --ExecutePreprocessor.timeout=1200 \
 	    --to notebook --execute \
 		$(PY_SCRIPT_LOC)/LogisticGLMM.ipynb \
 
