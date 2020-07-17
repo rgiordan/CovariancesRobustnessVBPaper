@@ -117,6 +117,37 @@ class TestModel(unittest.TestCase):
             np.array(sparse_vector_hess.todense()),
             err_msg='Sparse vector Hessian equality')
 
+        if False:
+            # Debugging a free Hessian problem.
+
+            print("********************************")
+            print(free_par.shape)
+            model.glmm_par.set_free(free_par)
+            print(model.glmm_par)
+            hess1 = model.glmm_par['mu']['info'].free_to_vector_hess(free_par)
+            hess2 = model.glmm_par['mu']['mean'].free_to_vector_hess(free_par)
+            print('mu', hess1)
+            print('mu', hess2)
+            # Aha, this is what's going on.  free_to_vector_hess is storing 0d
+            # arrays instead of sparse matrices.
+            print('Types:', type(hess1[0]), type(hess2[0]))
+            print('Types v2:', type(np.atleast_1d(hess1[0])[0]))
+            print('Entries:', hess1[0], ' and ', hess2[0])
+            print('Entries v2:', np.atleast_1d(hess1[0])[0], ' and ',
+                  np.atleast_1d(hess2[0])[0])
+            print('len:', hess2[0].shape)
+            #print('wot:', hess1[0].todense())
+            #print('mu', model.glmm_par['mu'].free_to_vector_hess(free_par))
+            # print('tau', model.glmm_par['tau'].free_to_vector_hess(free_par))
+            # print('beta', model.glmm_par['beta'].free_to_vector_hess(free_par))
+            # print('u', model.glmm_par['u'].free_to_vector_hess(free_par))
+            hess_vec = model.glmm_par.free_to_vector_hess(free_par)
+            #print(typeof(hess_vec))
+
+            #exit()
+
+            print("********************************")
+
         # Check that the free Hessian is equal.
         sparse_hess = logit_glmm.get_free_hessian(
             glmm_model=model, group_model=group_model, global_model=global_model,
