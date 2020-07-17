@@ -20,17 +20,16 @@ clean:
 	rm -f criteo_subsampled_mcmc_draws.Rdata
 	rm -f criteo_subsampled_stan_dat.json
 
-criteo_subsampled_python_vb_perturbation_results.pkl: \
+criteo_subsampled_python_vb_perturbation_results.pkl:
 	@echo "Running "$(PY_SCRIPT_LOC)/LogisticGLMMPerturbations.ipynb
 	source $(VENV_LOC)
-	criteo_subsampled_python_vb_results.pkl
 	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
 	    --to notebook --execute \
 		$(PY_SCRIPT_LOC)/LogisticGLMMPerturbations.ipynb
 
-criteo_subsampled_python_vb_map_results.pkl: \
+criteo_subsampled_python_vb_map_results.pkl:
 	@echo "Running "$(PY_SCRIPT_LOC)/LogisticGLMM_MAP.ipynb
-	criteo_subsampled_python_vb_results.pkl
+	source $(VENV_LOC)
 	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
 	    --to notebook --execute \
 		$(PY_SCRIPT_LOC)/LogisticGLMM_MAP.ipynb
