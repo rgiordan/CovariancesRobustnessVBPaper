@@ -5,7 +5,7 @@ SHELL = /bin/bash
 GIT_REPO_LOC := $(shell git rev-parse --show-toplevel)
 R_SCRIPT_LOC := $(GIT_REPO_LOC)/code/criteo_experiment/R/
 PY_SCRIPT_LOC := $(GIT_REPO_LOC)/code/criteo_experiment/python/
-
+VENV_LOC := $(GIT_REPO_LOC)/code/criteo_experiment/venv/bin/activate
 
 all: criteo_subsampled_python_vb_results.pkl \
 	 criteo_subsampled_python_vb_map_results.pkl \
@@ -22,6 +22,7 @@ clean:
 
 criteo_subsampled_python_vb_perturbation_results.pkl: \
 	@echo "Running "$(PY_SCRIPT_LOC)/LogisticGLMMPerturbations.ipynb
+	source $(VENV_LOC)
 	criteo_subsampled_python_vb_results.pkl
 	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
 	    --to notebook --execute \
@@ -36,6 +37,7 @@ criteo_subsampled_python_vb_map_results.pkl: \
 
 criteo_subsampled_python_vb_results.pkl: criteo_subsampled_stan_dat.json
 	@echo "Running "$(PY_SCRIPT_LOC)/LogisticGLMM.ipynb
+	source $(VENV_LOC)
 	jupyter nbconvert --ExecutePreprocessor.timeout=600 \
 	    --to notebook --execute \
 		$(PY_SCRIPT_LOC)/LogisticGLMM.ipynb \

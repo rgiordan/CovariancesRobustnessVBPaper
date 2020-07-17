@@ -2,7 +2,11 @@ ipykernel
 numpy>=1.16.0
 matplotlib
 pytest
-scikits
+#scikits
 scikit-sparse>=0.4.4
 scipy>=1.3.0
-LinearResponseVariationalBayes
+LinearResponseVariationalBayes==v0.2.0
+jupyter-client==6.1.6
+jupyter-core==4.6.3
+jupyterlab==2.1.0
+jupyter_contrib_nbextensions==0.5.1

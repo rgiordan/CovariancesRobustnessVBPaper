@@ -17,7 +17,7 @@ directory.
 
 ##############
 
-To create a virtual environment and install the package, create an empyt directory ``venv`` and run
+To create a virtual environment and install the package,  run
 
 ~~~
 python3 -m venv venv
