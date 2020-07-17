@@ -14,7 +14,7 @@ rstan_options(auto_write=FALSE)
 # Load the data.
 
 git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
-data_dir <- file.path(git_repo, "code/data")
+data_dir <- file.path(git_repo, "code/criteo_experiment/data")
 
 analysis_name <- "criteo_subsampled"
 #analysis_name <- "simulated_data_small"

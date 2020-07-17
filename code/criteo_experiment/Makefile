@@ -2,7 +2,7 @@
 SHELL = /bin/bash
 
 GIT_REPO_LOC := $(shell git rev-parse --show-toplevel)
-DATA_LOC = $(GIT_REPO_LOC)/code/data
+DATA_LOC = $(GIT_REPO_LOC)/code/criteo_experiment/data
 CRITEO_DATA_LOC = $(DATA_LOC)/criteo
 
 # This is the dataset subsampled from the Criteo logs.
