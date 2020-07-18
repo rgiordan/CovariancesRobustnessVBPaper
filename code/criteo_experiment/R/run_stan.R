@@ -7,7 +7,7 @@ library(jsonlite)
 library(rstan)
 library(rstansensitivity)
 
-rstan_options(auto_write=FALSE)
+rstan_options(auto_write=TRUE)
 
 
 ##############
@@ -64,7 +64,7 @@ mcmc_time <- Sys.time() - mcmc_time
 stopifnot(cores == 1) # rstansensitivity only supports one core for now.
 draws_mat <- rstan::extract(stan_sim, permute=FALSE)[,1,]
 mcmc_sens_time <- Sys.time()
-sens_result <- GetStanSensitivityFromModelFit(stan_sim, draws_mat, stan_sensitivity_model)
+sens_result <- GetStanSensitivityFromModelFit(stan_sim, stan_sensitivity_model)
 mcmc_sens_time <- Sys.time() - mcmc_sens_time
 
 # Save the results to an RData file for further post-processing.
