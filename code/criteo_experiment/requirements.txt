@@ -1,0 +1,12 @@
+ipykernel
+numpy==1.16.1
+matplotlib==2.1.2
+pytest
+scikit-sparse==0.4.4
+scipy==0.19.0
+LinearResponseVariationalBayes==0.2.1
+jupyter-client==6.1.6
+jupyter-core==4.6.3
+jupyterlab==2.1.0
+jupyter_contrib_nbextensions==0.5.1
+#cython==0.28.5

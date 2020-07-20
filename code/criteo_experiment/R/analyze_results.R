@@ -16,6 +16,7 @@ library(jsonlite)
 library(reticulate)
 use_python("/usr/bin/python3")
 
+git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
 
 project_directory <- file.path(
   Sys.getenv("GIT_REPO_LOC"),
@@ -133,7 +134,7 @@ results_posterior <-
       mutate(method="mfvb", metric="sd"),
     ConvertPythonMomentVectorToDF(lrvb_sd_vec, glmm_par) %>%
       mutate(method="lrvb", metric="sd"),
-    
+
     ConvertStanVectorToDF(colMeans(draws_mat), colnames(draws_mat), glmm_par) %>%
       mutate(method="mcmc", metric="mean"),
     ConvertStanVectorToDF(mcmc_sd_vec, colnames(draws_mat), glmm_par) %>%
@@ -143,7 +144,7 @@ results_posterior <-
       mutate(method="glmer", metric="mean"),
     ConvertGlmerSDResultToDF(glmer_results$glmm_list, glmm_par) %>%
       mutate(method="glmer", metric="sd"),
-    
+
     ConvertPythonMomentVectorToDF(vb_map_results$mle_moment_par_vector, glmm_par) %>%
       mutate(method="map", metric="mean")
   )
@@ -165,7 +166,7 @@ stan_indices <-
 
 indices_df <-
   inner_join(vb_indices, stan_indices, by=c("par", "component"), suffix=c("_vb", "_stan"))
-  
+
 cov_results_list <- list()
 for (vb_col in 1:20) {
   cat(".")
@@ -191,7 +192,7 @@ cov_results_df <-
   dcast(par_1 + par_2 + component_1 + component_2 + metric ~ method, value.var="val") %>%
   filter(par_1 != "e_log_tau", par_2 != "e_log_tau") %>%
   filter(par_2 != "e_u" | component_2 < 50)
-  
+
 
 
 ################################################
@@ -212,7 +213,7 @@ matrix_ud_index <- function(i, j) {
   matrix_ud_index_ordered <- function(i, j) {
     as.integer((j - 1) + i * (i - 1) / 2 + 1)
   }
-  ifelse(i > j, matrix_ud_index_ordered(i, j), matrix_ud_index_ordered(j, i))  
+  ifelse(i > j, matrix_ud_index_ordered(i, j), matrix_ud_index_ordered(j, i))
 }
 
 # Make the "component" column of matrix prior parameters into a linearized index
@@ -367,7 +368,7 @@ for (ind in 1:length(vb_pert_results$epsilon_list)) {
     vb_pert_results$moment_vec_list[[ind]], epsilon=vb_pert_results$epsilon_list[ind])
 }
 
-lrvb_sens_results <- 
+lrvb_sens_results <-
   ungroup(sensitivity_results) %>%
   filter(par_prior == vb_pert_results$perturb_prior_par,
          method=="lrvb",
@@ -400,10 +401,10 @@ if (save_results) {
   num_mcmc_draws <- nrow(as.matrix(stan_results$stan_sim))
   num_gh_points <- vb_results$num_gh_points
   hess_dim <- glmm_par$free_size()
-  
+
   cg_row_time <- vb_results$cg_row_time
   num_cg_iterations <- vb_results$num_cg_iterations
-  
+
   # Prior parameters
   pp <- stan_results$stan_dat
   pp$y_group <- NULL
@@ -441,7 +442,7 @@ if (FALSE) {
     ggplot(filter(results, metric == "mean", par != "e_u")) +
       geom_point(aes(x=mcmc, y=mfvb, color=par), size=3) +
       geom_abline(aes(intercept=0, slope=1))
-  ,   
+  ,
     ggplot(filter(results, metric == "mean", par == "e_u")) +
       geom_point(aes(x=mcmc, y=mfvb, color=par), size=3) +
       geom_abline(aes(intercept=0, slope=1))
@@ -453,7 +454,7 @@ if (FALSE) {
     ggplot(filter(results, metric == "mean", par != "e_u")) +
       geom_point(aes(x=mcmc, y=glmer, color=par), size=3) +
       geom_abline(aes(intercept=0, slope=1))
-    ,   
+    ,
     ggplot(filter(results, metric == "mean", par == "e_u")) +
       geom_point(aes(x=mcmc, y=glmer, color=par), size=1) +
       geom_abline(aes(intercept=0, slope=1)) +
@@ -461,18 +462,18 @@ if (FALSE) {
     , ncol=2
   )
 
-  # MAP means:  
+  # MAP means:
   grid.arrange(
     ggplot(filter(results, metric == "mean", par != "e_u")) +
       geom_point(aes(x=mcmc, y=map, color=par), size=3) +
       geom_abline(aes(intercept=0, slope=1))
-    ,   
+    ,
     ggplot(filter(results, metric == "mean", par == "e_u")) +
       geom_point(aes(x=mcmc, y=map, color=par), size=3) +
       geom_abline(aes(intercept=0, slope=1))
     , ncol=2
   )
-  
+
   # VB stdevs:
   grid.arrange(
     ggplot(filter(results, metric == "sd", par != "e_u")) +
@@ -484,9 +485,9 @@ if (FALSE) {
       geom_point(aes(x=mcmc, y=mfvb, color="mfvb", shape=par), size=3) +
       geom_point(aes(x=mcmc, y=lrvb, color="lrvb", shape=par), size=3) +
       geom_abline(aes(intercept=0, slope=1))
-  ,  
+  ,
   ncol=2)
-  
+
   # GLMER sds:
   grid.arrange(
     ggplot(graph_df <- filter(results, metric == "sd", par != "e_u")) +
@@ -494,7 +495,7 @@ if (FALSE) {
       geom_abline(aes(intercept=0, slope=1)) +
       expand_limits(x=0, y=0) +
       expand_limits(x=max(graph_df$mcmc), y=max(graph_df$mcmc))
-    ,   
+    ,
     ggplot(graph_df <- filter(results, metric == "sd", par == "e_u")) +
       geom_point(aes(x=mcmc, y=glmer, color=par), size=3) +
       geom_abline(aes(intercept=0, slope=1)) +
@@ -502,17 +503,17 @@ if (FALSE) {
       expand_limits(x=max(graph_df$mcmc), y=max(graph_df$mcmc))
       , ncol=2
   )
-  
+
 
 }
 
 
 if (FALSE) {
-  ggplot(filter(sens_df_cast, metric=="prior_sensitivity")) + 
+  ggplot(filter(sens_df_cast, metric=="prior_sensitivity")) +
     geom_point(aes(x=mcmc, y=lrvb, color=par_prior, shape=par), size=2) +
     geom_abline(aes(slope=1, intercept=0))
-  
-  ggplot(filter(sens_df_cast, metric=="prior_sensitivity_norm")) + 
+
+  ggplot(filter(sens_df_cast, metric=="prior_sensitivity_norm")) +
     geom_point(aes(x=mcmc, y=lrvb, color=par_prior, shape=par), size=2) +
     geom_abline(aes(slope=1, intercept=0))
 }
@@ -524,7 +525,7 @@ if (FALSE) {
     dcast(par + component + par_prior + component_prior +
             component_1_prior + component_2_prior + method ~ metric,
           value.var="val")
-  ggplot(foo) + 
+  ggplot(foo) +
     geom_point(aes(prior_sensitivity, prior_sensitivity_norm, color=par)) +
     geom_abline(aes(slope=1, intercept=0))
 }
@@ -533,13 +534,13 @@ if (FALSE) {
 
 if (FALSE) {
   # Glmer investigation
-  
+
   # https://cran.r-project.org/web/packages/lme4/vignettes/Theory.pdf
   filter(results, metric == "mean", par != "e_u") %>% select(-lrvb, -map)
-  
+
   # 3 is a good choice for the simulated small
-  par_col <- 3 
-  
+  par_col <- 3
+
   par = sprintf("u[%d]", par_col)
   u_draws <- rstan::extract(stan_results$stan_sim, pars=par)[[par]]
   #plot(1:length(u_draws), u_draws)
@@ -547,7 +548,7 @@ if (FALSE) {
   mfvb_e_u <- filter(results, metric == "mean", par == "e_u", component == par_col)$mfvb
   glmer_e_mu <- filter(results, metric == "mean", par == "e_mu")$mfvb
   mfvb_e_mu <- filter(results, metric == "mean", par == "e_mu")$mfvb
-  
+
   ggplot() +
     geom_histogram(aes(x=u_draws)) +
     geom_vline(aes(xintercept=glmer_e_u, color="glmer"), lwd=2) +

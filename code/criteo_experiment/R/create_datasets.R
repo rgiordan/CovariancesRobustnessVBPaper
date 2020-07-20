@@ -9,7 +9,7 @@ library(boot) # for inv.logit
 analysis_name <- "criteo_subsampled"
 
 git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
-data_directory <- file.path(git_repo, "code/data/")
+data_directory <- file.path(git_repo, "code/criteo_experiment/data/")
 input_rdata_filename <- file.path(data_directory, "criteo/criteo_data_for_paper.Rdata")
 json_filename <- file.path(
   data_directory, paste(analysis_name, "_stan_dat.json", sep=""))
@@ -27,7 +27,7 @@ if (analysis_name == "simulated_data_small") {
   k_reg <- 5
   n_groups <- 100
   n_obs <- n_groups * n_obs_per_group
-  
+
   set.seed(42)
   true_params <- list()
   true_params$n_obs <- n_obs
@@ -36,16 +36,16 @@ if (analysis_name == "simulated_data_small") {
   true_params$tau <- 1
   true_params$mu <- -3.5
   true_params$beta <- 1:k_reg
-  
+
   true_params$u <- list()
   for (g in 1:n_groups) {
     true_params$u[[g]] <- rnorm(1, true_params$mu, 1 / sqrt(true_params$tau))
   }
-  
+
   # Select correlated regressors to induce posterior correlation in beta.
   x_cov <- (matrix(0.5, k_reg, k_reg) + diag(k_reg)) / 2.5
   x <- rmvnorm(n_obs, sigma=x_cov)
-  
+
   # y_g is expected to be zero-indexed.
   y_g <- as.integer(rep(1:n_groups, each=n_obs_per_group) - 1)
   true_offsets <- x %*% true_params$beta
@@ -56,9 +56,9 @@ if (analysis_name == "simulated_data_small") {
   true_probs <- inv.logit(true_offsets)
   print(summary(true_probs))
   y <- rbinom(n=n_obs, size=1, prob=true_probs)
-  
+
   iters <- 3000 # We actually need more than this -- use this for debugging.
-} else if (analysis_name == "criteo_subsampled") { 
+} else if (analysis_name == "criteo_subsampled") {
   true_params <- list()
   load(input_rdata_filename)
   iters <- 10000
@@ -76,7 +76,7 @@ stan_dat <- list(NG = max(y_g) + 1,
                  y_group = y_g,
                  y = y,
                  x = x,
-                 
+
                  # Priors
                  beta_prior_mean = rep(0, k_reg),
                  beta_prior_info = 0.1 * diag(k_reg),

@@ -3,6 +3,7 @@
 import LinearResponseVariationalBayes as vb
 import logistic_glmm_lib as logit_glmm
 import LinearResponseVariationalBayes.SparseObjectives as obj_lib
+from sksparse.cholmod import cholesky
 
 import autograd
 import unittest
@@ -50,6 +51,15 @@ class TestModel(unittest.TestCase):
 
         moment_wrapper = logit_glmm.MomentWrapper(glmm_par)
         moment_wrapper.get_moment_vector_from_free(free_par)
+
+        # Make sure we can Cholesky solve (this is mostly to make sure
+        # we have the old versions of the libraries correctly configured)
+        kl_hess = model.get_sparse_free_hessian(free_par)
+        moment_jac = model.moment_wrapper.get_moment_jacobian(free_par)
+
+        kl_hess_chol = cholesky(kl_hess)
+        kl_inv_moment_jac = kl_hess_chol.solve_A(moment_jac.T)
+        lrvb_cov = np.matmul(moment_jac, kl_inv_moment_jac)
 
     def test_sparse_model(self):
         N = 17
@@ -117,6 +127,37 @@ class TestModel(unittest.TestCase):
             np.array(sparse_vector_hess.todense()),
             err_msg='Sparse vector Hessian equality')
 
+        if False:
+            # Debugging a free Hessian problem.
+
+            print("********************************")
+            print(free_par.shape)
+            model.glmm_par.set_free(free_par)
+            print(model.glmm_par)
+            hess1 = model.glmm_par['mu']['info'].free_to_vector_hess(free_par)
+            hess2 = model.glmm_par['mu']['mean'].free_to_vector_hess(free_par)
+            print('mu', hess1)
+            print('mu', hess2)
+            # Aha, this is what's going on.  free_to_vector_hess is storing 0d
+            # arrays instead of sparse matrices.
+            print('Types:', type(hess1[0]), type(hess2[0]))
+            print('Types v2:', type(np.atleast_1d(hess1[0])[0]))
+            print('Entries:', hess1[0], ' and ', hess2[0])
+            print('Entries v2:', np.atleast_1d(hess1[0])[0], ' and ',
+                  np.atleast_1d(hess2[0])[0])
+            print('len:', hess2[0].shape)
+            #print('wot:', hess1[0].todense())
+            #print('mu', model.glmm_par['mu'].free_to_vector_hess(free_par))
+            # print('tau', model.glmm_par['tau'].free_to_vector_hess(free_par))
+            # print('beta', model.glmm_par['beta'].free_to_vector_hess(free_par))
+            # print('u', model.glmm_par['u'].free_to_vector_hess(free_par))
+            hess_vec = model.glmm_par.free_to_vector_hess(free_par)
+            #print(typeof(hess_vec))
+
+            #exit()
+
+            print("********************************")
+
         # Check that the free Hessian is equal.
         sparse_hess = logit_glmm.get_free_hessian(
             glmm_model=model, group_model=group_model, global_model=global_model,
@@ -175,8 +216,6 @@ class TestModel(unittest.TestCase):
             full_free_jac,
             np.asarray(sparse_free_jac.todense()),
             err_msg='Sparse free Jacobian equality')
-
-
 
 
 if __name__ == '__main__':

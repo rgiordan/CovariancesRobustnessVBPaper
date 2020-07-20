@@ -7,14 +7,14 @@ library(jsonlite)
 library(rstan)
 library(rstansensitivity)
 
-rstan_options(auto_write=FALSE)
+rstan_options(auto_write=TRUE)
 
 
 ##############
 # Load the data.
 
 git_repo <- system("git rev-parse --show-toplevel", intern=TRUE)
-data_dir <- file.path(git_repo, "code/data")
+data_dir <- file.path(git_repo, "code/criteo_experiment/data")
 
 analysis_name <- "criteo_subsampled"
 #analysis_name <- "simulated_data_small"
@@ -30,7 +30,7 @@ stan_draws_file <- file.path(
 json_dat <- fromJSON(readLines(json_filename))
 stan_dat <- json_dat$stan_dat
 
-stan_dir <- file.path(git_repo, "code/R/stan/")
+stan_dir <- file.path(git_repo, "code/criteo_experiment/R/stan/")
 stan_model_name <- "logit_glmm"
 
 # Complie the Stan model.
@@ -64,7 +64,7 @@ mcmc_time <- Sys.time() - mcmc_time
 stopifnot(cores == 1) # rstansensitivity only supports one core for now.
 draws_mat <- rstan::extract(stan_sim, permute=FALSE)[,1,]
 mcmc_sens_time <- Sys.time()
-sens_result <- GetStanSensitivityFromModelFit(stan_sim, draws_mat, stan_sensitivity_model)
+sens_result <- GetStanSensitivityFromModelFit(stan_sim, stan_sensitivity_model)
 mcmc_sens_time <- Sys.time() - mcmc_sens_time
 
 # Save the results to an RData file for further post-processing.
