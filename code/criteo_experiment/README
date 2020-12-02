@@ -13,11 +13,12 @@ python3 -m venv venv
 source venv/bin/activate
 ~~~
 
-You will need to have this virtual environment active whenever running
-python scripts.  Next, install the required packages and define a Jupyter
-kernel as follows.
+You will need to have this virtual environment active whenever running python
+scripts.  Next, install the required packages and define a Jupyter kernel by
+running the following commands in the `code/criteo_experiment` directory.
 
 ~~~
+pip install --upgrade pip
 pip install numpy
 pip install wheel
 pip install -r requirements.txt
