@@ -1,5 +1,5 @@
 ipykernel
-numpy==1.16.1
+numpy==1.22.0
 matplotlib==2.1.2
 pytest
 scikit-sparse==0.4.4
